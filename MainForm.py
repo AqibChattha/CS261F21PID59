@@ -283,6 +283,7 @@ class Form1(QMainWindow):
     def buttonForm2_onClick(self):
         self.statusBar().showMessage("Switched to window 2")
         self.cams = Form2(QMainWindow)
+        self.cams.datahead()
         self.cams.show()
         self.close()
 
@@ -390,46 +391,7 @@ class Form2(QMainWindow):
         item.setText("Game Page")
         self.tableWidget.setHorizontalHeaderItem(6, item)
         self.tableWidget.horizontalHeader().setCascadingSectionResizes(True)
-        comboBox_2 = QComboBox(self)
-        comboBox_2.setGeometry(150, 180, 80, 22)
-        comboBox_2.setObjectName("comboBox_2")
-        comboBox_2.addItem("A-Z")
-        comboBox_2.addItem("Z-A")
-        comboBox_2.addItem("Starts With")
-        comboBox_2.addItem("Ends with")
-        comboBox_2.addItem("Contains")
-        comboBox_3 = QComboBox(self)
-        comboBox_3.setGeometry(250, 180, 80, 22)
-        comboBox_3.setObjectName("comboBox_3")
-        comboBox_3.addItem("A-Z")
-        comboBox_3.addItem("Z-A")
-        comboBox_3.addItem("Starts With")
-        comboBox_3.addItem("Ends with")
-        comboBox_3.addItem("Contains")
-        comboBox_4 = QComboBox(self)
-        comboBox_4.setGeometry(350, 180, 80, 22)
-        comboBox_4.setObjectName("comboBox_4")
-        comboBox_4.addItem("A-Z")
-        comboBox_4.addItem("Z-A")
-        comboBox_4.addItem("Starts With")
-        comboBox_4.addItem("Ends with")
-        comboBox_4.addItem("Contains")
-        comboBox_5 = QComboBox(self)
-        comboBox_5.setGeometry(450, 180, 80, 22)
-        comboBox_5.setObjectName("comboBox_5")
-        comboBox_5.addItem("A-Z")
-        comboBox_5.addItem("Z-A")
-        comboBox_5.addItem("Starts With")
-        comboBox_5.addItem("Ends with")
-        comboBox_5.addItem("Contains")
-        comboBox_6 = QComboBox(self)
-        comboBox_6.setGeometry(550, 180, 80, 22)
-        comboBox_6.setObjectName("comboBox_6")
-        comboBox_6.addItem("A-Z")
-        comboBox_6.addItem("Z-A")
-        comboBox_6.addItem("Starts With")
-        comboBox_6.addItem("Ends with")
-        comboBox_6.addItem("Contains")
+        
 
     def goMainWindow(self):
         self.cams = Form1(QMainWindow)
@@ -442,7 +404,18 @@ class Form2(QMainWindow):
             return all_data
         except:
             print("An Error Occured!")
-    
+
+    def datahead(self):
+        data = self.load_File() 
+        NumRows = 15000
+        self.tableWidget.setColumnCount(len(data.columns))
+        self.tableWidget.setRowCount(NumRows)
+        self.tableWidget.setHorizontalHeaderLabels(data.columns)
+        for i in range(NumRows):
+                for j in range(len(data.columns)):
+                        self.tableWidget.setItem(i, j, QTableWidgetItem(str(data.iat[i, j])))
+        self.tableWidget.resizeColumnsToContents()
+        self.tableWidget.resizeRowsToContents()
         
 
 if __name__ == '__main__':
