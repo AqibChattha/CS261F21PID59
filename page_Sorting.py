@@ -84,13 +84,13 @@ class Window(QMainWindow):
         pushButton.setText("Back..")
         pushButton.clicked.connect(self.goMainWindow)
         self.tableWidget = QTableWidget(self)
-        self.tableWidget.setGeometry(30, 210, 961, 361)
+        self.tableWidget.setGeometry(30, 180, 961, 400)
         self.tableWidget.setMinimumSize(731, 0)
         self.tableWidget.setStyleSheet("background-color: rgb(225, 225, 225,225);\n"
         "border-radius:30px")
         self.tableWidget.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
         self.tableWidget.resizeColumnsToContents()
-        
+        self.show()
         
 
     def goMainWindow(self):

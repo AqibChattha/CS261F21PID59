@@ -186,7 +186,6 @@ class Window(QMainWindow):
     def buttonForm1_onClick(self):
         self.statusBar().showMessage("Switched to window 1")
         self.cams = page2.Window(QMainWindow)
-        self.cams.show()
         self.close()
         
 if __name__ == '__main__':
